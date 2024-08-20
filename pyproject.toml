@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 documentation = "https://Sydney-Informatics-Hub.github.io/clause-segmenter/DOCS.html"
 repository = "https://github.com/Sydney-Informatics-Hub/clause-segmenter"
-packages = [{include = "segmenter"}]
+packages = [{include = "clause_segmenter"}]
 exclude = ["*/tests/*", "*/.ipynb_checkpoints/*", "*log.txt"]
 
 [tool.poetry.dependencies]

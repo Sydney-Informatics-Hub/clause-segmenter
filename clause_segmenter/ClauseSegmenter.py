@@ -6,6 +6,12 @@ from spacy.tokens import Token, Span, SpanGroup, Doc
 
 
 class ClauseSegmenter:
+    """
+    A text segmentation tool used to segment text into clauses.
+    The SpaCy dependency parser and part-of-speech tagger are used to identify clauses.
+    There are two public methods provided for segmenting: get_clauses_as_list and get_clauses_as_spangroup
+    """
+
     CLAUSE_ROOT_DEPS: list[str] = ['advcl', 'conj']
 
     def __init__(self, pipeline: Union[Language, str] = 'en_core_web_sm'):
@@ -16,6 +22,10 @@ class ClauseSegmenter:
         """
         self.nlp: Language
         if isinstance(pipeline, Language):
+            expected_components: list[str] = ['tagger', 'parser']
+            for comp in expected_components:
+                if not pipeline.has_pipe(comp):
+                    raise ValueError(f"Expected pipeline component is missing from provided pipeline: {comp}")
             self.nlp = pipeline
         elif isinstance(pipeline, str):
             self.nlp = spacy.load(pipeline)

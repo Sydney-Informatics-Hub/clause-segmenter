@@ -5,7 +5,7 @@ from spacy import Language
 from spacy.lang.en import English
 from spacy.tokens import SpanGroup, Doc
 
-from segmenter import ClauseSegmenter
+from clause_segmenter import ClauseSegmenter
 
 CURRENT_DIR: Path = Path(__file__).parent.resolve()
 
@@ -24,6 +24,8 @@ class TestSegmenter(unittest.TestCase):
 
     def test_custom_pipeline(self):
         custom_pipeline: Language = English()
+        custom_pipeline.add_pipe('tagger')
+        custom_pipeline.add_pipe('parser')
         segmenter: ClauseSegmenter = ClauseSegmenter(pipeline=custom_pipeline)
 
         self.assertEqual(segmenter.get_pipeline(), custom_pipeline)
