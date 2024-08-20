@@ -23,7 +23,7 @@ from clause_segmenter import ClauseSegmenter
 ClauseSegmenter constructor
 
 Params
--  pipeline: Language | str – The SpaCy Language or identifier of the Language to be used by the ClauseSegmenter. Defaults to 'en_core_web_sm'
+-  pipeline: Language or str – The SpaCy Language or identifier of the Language to be used by the ClauseSegmenter. Defaults to 'en_core_web_sm'
 
 Examples
 
