@@ -8,7 +8,7 @@ from spacy.tokens import Token, Span, SpanGroup, Doc
 class ClauseSegmenter:
     """
     A text segmentation tool used to segment text into clauses.
-    The SpaCy dependency parser and part-of-speech tagger are used to identify clauses.
+    The spaCy dependency parser and part-of-speech tagger are used to identify clauses.
     There are two public methods provided for segmenting: get_clauses_as_list and get_clauses_as_spangroup
     """
 
@@ -16,8 +16,8 @@ class ClauseSegmenter:
 
     def __init__(self, pipeline: Union[Language, str] = 'en_core_web_sm'):
         """
-        Initialises the ClauseSegmenter with a configurable SpaCy Language pipeline
-        :param pipeline: The SpaCy Language or identifier of the Language to be used by the ClauseSegmenter. Defaults to 'en_core_web_sm'
+        Initialises the ClauseSegmenter with a configurable spaCy Language pipeline. If the pipeline argument is a string, then a download of the model through spaCy will be attempted before loading it as a pipeline.
+        :param pipeline: The spaCy Language or identifier of the Language to be used by the ClauseSegmenter. Defaults to 'en_core_web_sm'
         :type pipeline: Union[Language, str]
         """
         self.nlp: Language
@@ -28,20 +28,24 @@ class ClauseSegmenter:
                     raise ValueError(f"Expected pipeline component is missing from provided pipeline: {comp}")
             self.nlp = pipeline
         elif isinstance(pipeline, str):
-            self.nlp = spacy.load(pipeline)
+            try:
+                self.nlp = spacy.load(pipeline)
+            except OSError:
+                spacy.cli.download(pipeline)
+                self.nlp = spacy.load(pipeline)
         else:
-            raise TypeError(f"Expected provided pipeline to be either str or SpaCy Language. Instead got {type(pipeline)}")
+            raise TypeError(f"Expected provided pipeline to be either str or spaCy Language. Instead got {type(pipeline)}")
 
     def get_pipeline(self) -> Language:
         """
-        :return: the SpaCy Language pipeline used by the ClauseSegmenter instance
+        :return: the spaCy Language pipeline used by the ClauseSegmenter instance
         :rtype: Language
         """
         return self.nlp
 
     def get_clauses_as_list(self, text: str) -> list[str]:
         """
-        Converts the provided text to a SpaCy Doc using the preconfigured Language pipeline and returns a list of strings,
+        Converts the provided text to a spaCy Doc using the preconfigured Language pipeline and returns a list of strings,
         where each element is a clause.
         :param text: The input text that will be segmented into clauses.
         :type text: str
@@ -61,7 +65,7 @@ class ClauseSegmenter:
         Accepts a Doc object and returns a SpanGroup, where each Span element is a clause.
         A SpanGroup object functions only as long as the Doc object used to create it exists,
         so a reference to the provided doc should be maintained as long as the returned SpanGroup is needed.
-        :param doc: The input text that will be segmented into clauses as a SpaCy Doc.
+        :param doc: The input text that will be segmented into clauses as a spaCy Doc.
         :type doc: Doc
         :return: A SpanGroup whose Span elements are the segmented clauses. The clauses are sorted first by clause start token index, and then by clause end token index.
         :rtype: SpanGroup
