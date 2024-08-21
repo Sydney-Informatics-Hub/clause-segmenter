@@ -13,14 +13,12 @@ exclude = ["*/tests/*", "*/.ipynb_checkpoints/*", "*log.txt"]
 [tool.poetry.dependencies]
 python = "^3.10"
 spacy = "^3.7.0"
-en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1.tar.gz"}
 
 [tool.poetry.group.dev]
 optional = true
 
 [tool.poetry.group.dev.dependencies]
 jupyterlab = "~=4.0"
-
 
 [build-system]
 requires = ["poetry-core"]
