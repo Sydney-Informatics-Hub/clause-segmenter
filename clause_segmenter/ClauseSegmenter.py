@@ -115,7 +115,7 @@ class ClauseSegmenter:
 
     @staticmethod
     def _is_child_punct(child: Token) -> bool:
-        return child.dep_.lower() == 'punct'
+        return child.is_punct
 
     @staticmethod
     def _is_clause_root(tok: Token) -> bool:
