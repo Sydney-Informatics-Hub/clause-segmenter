@@ -1,31 +1,25 @@
 [tool.poetry]
 name = "clause-segmenter"
-version = "0.1.0"
-description = "A clause segmenting tool utilising Python's spaCy"
+version = "0.1.1"
+description = "A clause segmenting tool utilising Python's SpaCy"
 authors = ["Hamish Croser <h.croser1@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 documentation = "https://Sydney-Informatics-Hub.github.io/clause-segmenter/DOCS.html"
 repository = "https://github.com/Sydney-Informatics-Hub/clause-segmenter"
-keywords = ["python", "spacy", "nlp", "clause"]
-classifiers = [
-    "Intended Audience :: Developers",
-    "Intended Audience :: Science/Research",
-    "Topic :: Text Processing :: Linguistic",
-    "License :: OSI Approved :: MIT License",
-    "Typing :: Typed",
-    "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13"
-]
 packages = [{include = "clause_segmenter"}]
 exclude = ["*/tests/*", "*/.ipynb_checkpoints/*", "*log.txt"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-spacy = "^3.7.0"
+spacy = ">=3.7.0,<4.0.0"
+numpy = "<2.0"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "~=4.0"
 
 [build-system]
 requires = ["poetry-core"]

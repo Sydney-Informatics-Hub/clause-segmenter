@@ -2,6 +2,12 @@
 
 A clause segmenting tool utilising Python's SpaCy
 
+## Demo
+
+The following link requires a valid [Australian Access Federation](https://aaf.edu.au/) login
+
+[![Binder](https://binderhub.atap-binder.cloud.edu.au/badge_logo.svg)](https://binderhub.atap-binder.cloud.edu.au/v2/gh/Sydney-Informatics-Hub/clause-segmenter/demo?labpath=demo.ipynb)
+
 ## Installation
 
 ```shell
