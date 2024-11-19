@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "clause-segmenter"
-version = "0.1.0"
+version = "0.1.1"
 description = "A clause segmenting tool utilising Python's SpaCy"
 authors = ["Hamish Croser <h.croser1@gmail.com>"]
 license = "MIT"
@@ -12,7 +12,8 @@ exclude = ["*/tests/*", "*/.ipynb_checkpoints/*", "*log.txt"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-spacy = "^3.7.0"
+spacy = ">=3.7.0,<4.0.0"
+numpy = "<2.0"
 
 [tool.poetry.group.dev]
 optional = true
